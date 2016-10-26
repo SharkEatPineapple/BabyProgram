@@ -23,6 +23,7 @@ public class UserServiceTest {
         User user = new User();
         user.setPhoneNum("1309302930");
         user.setUUId("uuid");
+        System.out.println("hello,world");
         mUserService.save(user);
     }
 }
