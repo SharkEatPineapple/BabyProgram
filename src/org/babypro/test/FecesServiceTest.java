@@ -1,14 +1,14 @@
 package org.babypro.test;
 
-import java.util.Date;
-
-import org.babypro.domain.Piss;
-import org.babypro.service.IPissService;
+import org.babypro.domain.Feces;
+import org.babypro.service.IFecesService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.Date;
 
 /**
  * Created by johnzhu on 10/27/2016.
@@ -18,15 +18,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class FecesServiceTest {
 
     @Autowired
-    IPissService mPissService;
+    IFecesService mFecesService;
 
     @Test
     public void save() throws Exception{
-        Piss piss = new Piss();
-        Date date = new Date();
-        System.out.println(date);
-        piss.setPissCurrentTime(date);
-        piss.setPissWeight("heklklo");
-        mPissService.save(piss);
+        Feces feces = new Feces();
+        feces.setFecesCurrentTime(new Date());
+        feces.setFecesStatus(0);
+        feces.setFecesWeight("100");
+        mFecesService.save(feces);
+
     }
 }
