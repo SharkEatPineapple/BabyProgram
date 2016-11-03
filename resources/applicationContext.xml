@@ -69,6 +69,7 @@
 
     </bean>
 
+    <!-- 添加注解扫描 -->
     <context:component-scan base-package="org.babypro"/>
 
     <!--配置事务管理器 -->
@@ -80,6 +81,12 @@
 
     <!-- 开启注解事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!-- 添加MVC注解支持 -->
+    <mvc:annotation-driven/>
+
+    <!-- 添加对静态资源的访问 -->
+    <mvc:default-servlet-handler/>
 
 
 </beans>

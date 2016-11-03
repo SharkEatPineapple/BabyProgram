@@ -28,6 +28,7 @@ public class Feces {
     private String fecesWeight;
 
 
+
     public int getPissId() {
         return pissId;
     }
@@ -59,4 +60,6 @@ public class Feces {
     public void setFecesWeight(String pFecesWeight) {
         fecesWeight = pFecesWeight;
     }
+
+
 }
