@@ -33,6 +33,10 @@ public class Lactation {
     @Column(name="lactation_amount")
     private int lactationAmount;
 
+    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, optional = true)
+    @JoinColumn(name="user_uid")
+    private User user;
+
 
     public int getLactationId() {
         return lactationId;
@@ -80,5 +84,13 @@ public class Lactation {
 
     public void setLactationAmount(int pLactationAmount) {
         lactationAmount = pLactationAmount;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User pUser) {
+        user = pUser;
     }
 }

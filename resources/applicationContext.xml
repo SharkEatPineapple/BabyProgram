@@ -56,6 +56,7 @@
                 <!-- 	<value>com.lol.common.entity.ApkVersion</value>
                     <value>com.lol.common.entity.Area</value> -->
                 <value>org.babypro.domain.User</value>
+                <value>org.babypro.domain.Lactation</value>
                 <!-- <value>com.lol.common.entity.ConvertApply</value>
                 <value>com.lol.common.entity.Heroes</value>
                 <value>com.lol.common.entity.Picture</value>

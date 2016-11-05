@@ -21,9 +21,9 @@ public class UserServiceTest {
     @Test
     public void save() throws Exception{
         User user = new User();
-        user.setPhoneNum("1309302930");
-        user.setUUId("uuid");
-        System.out.println("hello,world");
+        user.setUid("E18011112222");
+        user.setNickName("LL");
+        user.setOpenid("openId");
         mUserService.save(user);
     }
 }
