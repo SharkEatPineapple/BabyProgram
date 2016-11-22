@@ -1,8 +1,9 @@
 package org.babypro.test;
 
+import com.google.gson.Gson;
 import org.babypro.domain.Lactation;
-import org.babypro.domain.User;
 import org.babypro.service.ILactationService;
+import org.babypro.service.IUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,23 +22,30 @@ public class LactationServiceTest {
     @Autowired
     ILactationService mLactationService;
 
+    @Autowired
+    IUserService mUserService;
+
     @Test
     public void save() throws Exception{
-        User user = new User();
-        user.setUid("E18033332222");
-        user.setNickName("DDD");
-        user.setOpenid("openId");
+
 
 
         Lactation lactation = new Lactation();
-        lactation.setLactationAmount(100);
         lactation.setLactationCurrentTime(new Date());
         lactation.setLactationSide("Left");
         lactation.setLactationType("1");
         lactation.setLactationDuration(200);
-        lactation.setUser(user);
+        lactation.setUser(mUserService.get("E18011112222"));
 
         mLactationService.save(lactation);
 
+    }
+
+    @Test
+    public void get() throws Exception {
+        Lactation l = mLactationService.get(7);
+        Gson gson = new Gson();
+        String a = gson.toJson(l);
+        System.out.println(a);
     }
 }

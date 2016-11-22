@@ -57,14 +57,10 @@
                     <value>com.lol.common.entity.Area</value> -->
                 <value>org.babypro.domain.User</value>
                 <value>org.babypro.domain.Lactation</value>
-                <!-- <value>com.lol.common.entity.ConvertApply</value>
-                <value>com.lol.common.entity.Heroes</value>
-                <value>com.lol.common.entity.Picture</value>
-                <value>com.lol.common.entity.PointsChangeRecord</value>
-                 <value>com.lol.common.entity.PointsSyncRecord</value>
-                 <value>com.lol.common.entity.Settings</value>
-                 <value>com.lol.common.entity.User</value>
-                 <value>com.lol.common.entity.PictureCategoryRelationship</value> -->
+                <value>org.babypro.domain.Food</value>
+                <value>org.babypro.domain.Feces</value>
+                <value>org.babypro.domain.Piss</value>
+                <value>org.babypro.domain.Bambix</value>
             </list>
         </property>
 
