@@ -2,7 +2,6 @@ package org.babypro.controllers;
 
 import com.google.gson.Gson;
 import org.babypro.domain.Bambix;
-import org.babypro.domain.Feces;
 import org.babypro.domain.Food;
 import org.babypro.domain.User;
 import org.babypro.service.IBambixService;
