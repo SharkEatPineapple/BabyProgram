@@ -13,39 +13,38 @@ public class User implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id")
-    private Integer mId;
+    @Column(name="user_uid")
+    private String uid;
 
-    @Column(name="uuid")
-    private String mUUId;
+    @Column(name="user_nickname")
+    private String nickName;
 
-    @Column(name="phoneNum")
-    private String mPhoneNum;
+    @Column(name="user_openid")
+    private String openid;
 
 
-    public Integer getId() {
-        return mId;
+    public String getUid() {
+        return uid;
     }
 
-    public void setId(Integer pId) {
-        mId = pId;
+    public void setUid(String pUid) {
+        uid = pUid;
     }
 
-    public String getUUId() {
-        return mUUId;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setUUId(String pUUId) {
-        mUUId = pUUId;
+    public void setNickName(String pNickName) {
+        nickName = pNickName;
     }
 
-    public String getPhoneNum() {
-        return mPhoneNum;
+    public String getOpenid() {
+        return openid;
     }
 
-    public void setPhoneNum(String pPhoneNum) {
-        mPhoneNum = pPhoneNum;
+    public void setOpenid(String pOpenid) {
+        openid = pOpenid;
     }
 }
 

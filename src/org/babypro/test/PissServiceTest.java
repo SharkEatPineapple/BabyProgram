@@ -1,29 +1,32 @@
 package org.babypro.test;
 
-import org.babypro.domain.User;
-import org.babypro.service.IUserService;
+import org.babypro.domain.Piss;
+import org.babypro.service.IPissService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
+
 /**
  * Created by johnzhu on 10/27/2016.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
-public class UserServiceTest {
+public class PissServiceTest {
 
     @Autowired
-    IUserService mUserService;
+    IPissService mPissService;
 
     @Test
     public void save() throws Exception{
-        User user = new User();
-        user.setUid("E18011112222");
-        user.setNickName("LL");
-        user.setOpenid("openId");
-        mUserService.save(user);
+        Piss piss = new Piss();
+        Date date = new Date();
+        System.out.println(date);
+        piss.setPissCurrentTime(date);
+        piss.setPissWeight("heklklo");
+        mPissService.save(piss);
     }
 }

@@ -56,19 +56,17 @@
                 <!-- 	<value>com.lol.common.entity.ApkVersion</value>
                     <value>com.lol.common.entity.Area</value> -->
                 <value>org.babypro.domain.User</value>
-                <!-- <value>com.lol.common.entity.ConvertApply</value>
-                <value>com.lol.common.entity.Heroes</value>
-                <value>com.lol.common.entity.Picture</value>
-                <value>com.lol.common.entity.PointsChangeRecord</value>
-                 <value>com.lol.common.entity.PointsSyncRecord</value>
-                 <value>com.lol.common.entity.Settings</value>
-                 <value>com.lol.common.entity.User</value>
-                 <value>com.lol.common.entity.PictureCategoryRelationship</value> -->
+                <value>org.babypro.domain.Lactation</value>
+                <value>org.babypro.domain.Food</value>
+                <value>org.babypro.domain.Feces</value>
+                <value>org.babypro.domain.Piss</value>
+                <value>org.babypro.domain.Bambix</value>
             </list>
         </property>
 
     </bean>
 
+    <!-- 添加注解扫描 -->
     <context:component-scan base-package="org.babypro"/>
 
     <!--配置事务管理器 -->
@@ -80,6 +78,12 @@
 
     <!-- 开启注解事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!-- 添加MVC注解支持 -->
+    <mvc:annotation-driven/>
+
+    <!-- 添加对静态资源的访问 -->
+    <mvc:default-servlet-handler/>
 
 
 </beans>
