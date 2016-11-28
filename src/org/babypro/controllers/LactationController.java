@@ -1,17 +1,14 @@
 package org.babypro.controllers;
 
-import com.google.gson.Gson;
 import org.babypro.domain.Lactation;
 import org.babypro.domain.User;
 import org.babypro.service.ILactationService;
 import org.babypro.service.IUserService;
 import org.babypro.utils.AjaxResult;
+import org.babypro.utils.JsonTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,65 +31,59 @@ public class LactationController {
     @ResponseBody
     public String save(HttpServletRequest req ,@RequestBody Lactation pLactation){
 
-        System.out.println("hello,world");
-
-        System.out.println("id : " +req.getAttribute("user_id"));
-//        InputStream is = null;
-//        String requestBody = "";
-//        try {
-//            is = req.getInputStream();
-//            requestBody= IOUtils.toString(is, "utf-8");
-//        }catch(Exception e){
-//
-//        }
-
-//        System.out.println(requestBody);
-//        Gson gson = new Gson();
-//        Lactation a = gson.fromJson(requestBody, Lactation.class);
-//        System.out.println(a);
-
         User user = mUserService.get((String)req.getAttribute("user_id"));
         pLactation.setUser(user);
-        mLactationService.save(pLactation);
 
-        System.out.println(pLactation.getLactationSide());
+        try {
+            mLactationService.save(pLactation);
+            aj = new AjaxResult(true,"save success");
+        }catch (Exception pE){
 
-        aj = new AjaxResult();
-        aj.setSuccess(true);
-        aj.setMessage("保存成功!");
+        }
 
-        Gson gson = new Gson();
-        String result = gson.toJson(aj);
-        System.out.println("result");
-        return result;
+        return JsonTool.objToString(aj);
     }
 
     @RequestMapping(value="/lactation/update", method = RequestMethod.POST)
     @ResponseBody
     public String update(HttpServletRequest req ,@RequestBody Lactation pLactation){
-        mLactationService.update(pLactation);
+        try {
+            mLactationService.update(pLactation);
+            aj = new AjaxResult(true,"update success");
+        }catch (Exception pE){
 
-        aj = new AjaxResult();
-        aj.setSuccess(true);
-        aj.setMessage("modify success!!");
-        Gson gson = new Gson();
-        String result = gson.toJson(aj);
-        System.out.println(result);
-        return result;
+        }
+
+        return JsonTool.objToString(aj);
     }
 
-    @RequestMapping(value="/lactation/delete", method = RequestMethod.POST)
+    @RequestMapping(value="/lactation/delete/{lactationId}", method = RequestMethod.POST)
     @ResponseBody
-    public String delete(HttpServletRequest req ,@RequestBody Lactation pLactation){
-        mLactationService.delete(pLactation.getLactationId());
+    public String delete(@PathVariable("lactationId") String pLactationId){
+        try {
+            mLactationService.delete(pLactationId);
+            aj = new AjaxResult(true,"delete success");
+        }catch (Exception pE){
 
-        aj = new AjaxResult();
-        aj.setSuccess(true);
-        aj.setMessage("modify success!!");
-        Gson gson = new Gson();
-        String result = gson.toJson(aj);
-        System.out.println(result);
-        return result;
+        }
+
+        return JsonTool.objToString(aj);
+    }
+
+    @RequestMapping(value="/lactation/get/{lactationId}", method = RequestMethod.POST)
+    @ResponseBody
+    public String get(@PathVariable("lactationId") String pLactationId){
+        try {
+
+//            a.add(JsonTool.objToString(mLactationService.get(Integer.valueOf(pLactationId))));
+            aj = new AjaxResult(true,"get success",JsonTool.objToString(mLactationService.getAll()));
+        }catch (Exception pE){
+
+            System.out.println(pE.getMessage());
+            System.out.println(pE);
+        }
+
+        return JsonTool.objToString(aj);
     }
 
 

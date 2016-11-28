@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * 用户登陆过滤器
  * Created by johnzhu on 11/6/2016.
  */
 public class AccessFilter implements Filter {

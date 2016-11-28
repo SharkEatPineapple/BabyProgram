@@ -8,6 +8,27 @@ public class AjaxResult {
     private boolean success = true;
     private String message;
     private Integer errorCode = -99;
+    private String result;
+
+    public AjaxResult(Boolean pSuccess, String pMessage){
+        success = pSuccess;
+        message = pMessage;
+    }
+
+
+    public AjaxResult(Boolean pSuccess, String pMessage, Integer pErrorCode){
+        success = pSuccess;
+        message = pMessage;
+        errorCode = pErrorCode;
+    }
+
+
+    public AjaxResult(Boolean pSuccess, String pMessage, String pResult){
+        success = pSuccess;
+        message = pMessage;
+        result = pResult;
+    }
+
 
 
     public boolean isSuccess() {
@@ -32,5 +53,13 @@ public class AjaxResult {
 
     public void setErrorCode(Integer pErrorCode) {
         errorCode = pErrorCode;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String pResult) {
+        result = pResult;
     }
 }

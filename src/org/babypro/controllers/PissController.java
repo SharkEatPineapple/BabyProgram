@@ -1,16 +1,13 @@
 package org.babypro.controllers;
 
-import com.google.gson.Gson;
 import org.babypro.domain.Piss;
 import org.babypro.domain.User;
 import org.babypro.service.IPissService;
 import org.babypro.service.IUserService;
 import org.babypro.utils.AjaxResult;
+import org.babypro.utils.JsonTool;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,47 +30,42 @@ public class PissController {
     public String save(HttpServletRequest req ,@RequestBody Piss pPiss){
         User user = mUserService.get((String)req.getAttribute("user_id"));
         pPiss.setUser(user);
-        mPissService.save(pPiss);
 
+        try {
+            mPissService.save(pPiss);
+            aj = new AjaxResult(true, "save success");
+        }catch (Exception pE){
 
-        aj = new AjaxResult();
-        aj.setSuccess(true);
-        aj.setMessage("保存成功!");
+        }
 
-        Gson gson = new Gson();
-        String result = gson.toJson(aj);
-        System.out.println("result");
-        return result;
+        return JsonTool.objToString(aj);
     }
 
     @RequestMapping(value="/piss/update", method = RequestMethod.POST)
     @ResponseBody
     public String update(HttpServletRequest req , @RequestBody Piss pPiss){
 
-        mPissService.update(pPiss);
+        try {
+            mPissService.update(pPiss);
+            aj = new AjaxResult(true, "update success");
+        }catch (Exception pE){
 
-        aj = new AjaxResult();
-        aj.setSuccess(true);
-        aj.setMessage("modify success!!");
+        }
 
-        Gson gson = new Gson();
-        String result = gson.toJson(aj);
-        System.out.println(result);
-        return result;
+        return JsonTool.objToString(aj);
     }
 
-    @RequestMapping(value="/piss/delete", method = RequestMethod.POST)
+    @RequestMapping(value="/piss/delete/{pissId}", method = RequestMethod.POST)
     @ResponseBody
-    public String delete(HttpServletRequest req ,@RequestBody Piss pPiss){
-        mPissService.delete(pPiss.getPissId());
+    public String delete(@PathVariable("pissId") String pPissId){
+        try {
+            mPissService.delete(pPissId);
+            aj = new AjaxResult(true, "delete success");
+        }catch (Exception pE) {
 
-        aj = new AjaxResult();
-        aj.setSuccess(true);
-        aj.setMessage("modify success!!");
-        Gson gson = new Gson();
-        String result = gson.toJson(aj);
-        System.out.println(result);
-        return result;
+        }
+
+        return JsonTool.objToString(aj);
     }
 
 

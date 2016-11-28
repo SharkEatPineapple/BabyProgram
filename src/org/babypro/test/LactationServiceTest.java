@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by johnzhu on 10/27/2016.
@@ -46,6 +47,14 @@ public class LactationServiceTest {
         Lactation l = mLactationService.get(7);
         Gson gson = new Gson();
         String a = gson.toJson(l);
+        System.out.println(a);
+    }
+
+    @Test
+    public void getAll() throws Exception {
+        List<Lactation> m = mLactationService.getAll();
+        Gson gson = new Gson();
+        String a = gson.toJson(m);
         System.out.println(a);
     }
 }

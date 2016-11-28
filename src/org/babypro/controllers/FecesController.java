@@ -1,16 +1,13 @@
 package org.babypro.controllers;
 
-import com.google.gson.Gson;
 import org.babypro.domain.Feces;
 import org.babypro.domain.User;
 import org.babypro.service.IFecesService;
 import org.babypro.service.IUserService;
 import org.babypro.utils.AjaxResult;
+import org.babypro.utils.JsonTool;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,47 +30,41 @@ public class FecesController {
     public String save(HttpServletRequest req ,@RequestBody Feces pFeces){
         User user = mUserService.get((String)req.getAttribute("user_id"));
         pFeces.setUser(user);
-        mFecesService.save(pFeces);
+        try {
+            mFecesService.save(pFeces);
+            aj = new AjaxResult(true,"save success");
+        }catch (Exception pE){
 
+        }
 
-        aj = new AjaxResult();
-        aj.setSuccess(true);
-        aj.setMessage("保存成功!");
-
-        Gson gson = new Gson();
-        String result = gson.toJson(aj);
-        System.out.println("result");
-        return result;
+        return JsonTool.objToString(aj);
     }
 
     @RequestMapping(value="/feces/update", method = RequestMethod.POST)
     @ResponseBody
     public String update(HttpServletRequest req , @RequestBody Feces pFeces){
 
-        mFecesService.update(pFeces);
+        try {
+            mFecesService.update(pFeces);
+            aj = new AjaxResult(true,"update success");
+        }catch (Exception pE){
 
-        aj = new AjaxResult();
-        aj.setSuccess(true);
-        aj.setMessage("modify success!!");
+        }
 
-        Gson gson = new Gson();
-        String result = gson.toJson(aj);
-        System.out.println(result);
-        return result;
+        return JsonTool.objToString(aj);
     }
 
-    @RequestMapping(value="/feces/delete", method = RequestMethod.POST)
+    @RequestMapping(value="/feces/delete/{fecesId}", method = RequestMethod.POST)
     @ResponseBody
-    public String delete(HttpServletRequest req ,@RequestBody Feces pFeces){
-        mFecesService.delete(pFeces.getPissId());
+    public String delete(@PathVariable("fecesId") String pFecesId){
 
-        aj = new AjaxResult();
-        aj.setSuccess(true);
-        aj.setMessage("modify success!!");
-        Gson gson = new Gson();
-        String result = gson.toJson(aj);
-        System.out.println(result);
-        return result;
+        try {
+            mFecesService.delete(pFecesId);
+            aj = new AjaxResult(true,"delete success");
+        }catch (Exception pE){
+
+        }
+        return JsonTool.objToString(aj);
     }
 
 
