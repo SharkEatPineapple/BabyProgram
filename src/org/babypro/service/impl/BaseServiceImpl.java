@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by johnzhu on 10/27/2016.
@@ -60,5 +61,10 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
     @Override
     public List<T> getAll() {
         return mBaseDao.getAll(mEntityClass);
+    }
+
+    @Override
+    public <T> T get(CharSequence queryString, Map<String, Object> params) {
+        return (T) mBaseDao.get(queryString,params);
     }
 }

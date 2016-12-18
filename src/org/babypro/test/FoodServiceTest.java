@@ -28,7 +28,7 @@ public class FoodServiceTest {
         Food food = new Food();
         food.setFoodName("水果");
         food.setFoodMessage("苹果");
-        food.setUser(mUserService.get("E18011112222"));
+
 
         mFoodService.save(food);
 
