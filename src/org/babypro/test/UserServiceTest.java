@@ -21,9 +21,11 @@ public class UserServiceTest {
     @Test
     public void save() throws Exception{
         User user = new User();
-        user.setUid("E18011112222");
+        user.setOpenid("openIdTest");
         user.setNickName("LL");
-        user.setOpenid("openId");
+        user.setGender(1);
+        user.setPic("/temp/pic/1.jpg");
+        user.setPosition("chengdu");
         mUserService.save(user);
     }
 }

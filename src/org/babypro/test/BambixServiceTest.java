@@ -38,7 +38,6 @@ public class BambixServiceTest {
         bambix.setBambixCurrentTime(new Date());
         bambix.setBambixWeight("100");
         bambix.setFood(mFoodService.get(1));
-        bambix.setUser(mUserService.get("E18011112222"));
 
         mBambixService.save(bambix);
 

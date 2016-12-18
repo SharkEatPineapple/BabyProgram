@@ -1,6 +1,9 @@
 package org.babypro.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
@@ -13,22 +16,28 @@ public class User implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name="user_uid")
-    private String uid;
+    @Column(name="user_openid")
+    private String openid;
 
     @Column(name="user_nickname")
     private String nickName;
 
-    @Column(name="user_openid")
-    private String openid;
+    @Column(name="user_pic")
+    private String pic;
+
+    @Column(name="user_gender")
+    private int gender;
+
+    @Column(name="user_position")
+    private String position;
 
 
-    public String getUid() {
-        return uid;
+    public String getOpenid() {
+        return openid;
     }
 
-    public void setUid(String pUid) {
-        uid = pUid;
+    public void setOpenid(String pOpenid) {
+        openid = pOpenid;
     }
 
     public String getNickName() {
@@ -39,12 +48,28 @@ public class User implements Serializable{
         nickName = pNickName;
     }
 
-    public String getOpenid() {
-        return openid;
+    public String getPic() {
+        return pic;
     }
 
-    public void setOpenid(String pOpenid) {
-        openid = pOpenid;
+    public void setPic(String pPic) {
+        pic = pPic;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int pGender) {
+        gender = pGender;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String pPosition) {
+        position = pPosition;
     }
 }
 

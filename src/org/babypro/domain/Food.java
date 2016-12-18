@@ -23,9 +23,8 @@ public class Food {
     private String foodMessage;
 
 
-    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, optional = true)
-    @JoinColumn(name="user_uid")
-    private User user;
+    @Column(name="user_openid")
+    private String userOpenId;
 
     public int getFoodId() {
         return foodId;
@@ -51,11 +50,11 @@ public class Food {
         foodMessage = pFoodMessage;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserOpenId() {
+        return userOpenId;
     }
 
-    public void setUser(User pUser) {
-        user = pUser;
+    public void setUserOpenId(String pUserOpenId) {
+        userOpenId = pUserOpenId;
     }
 }

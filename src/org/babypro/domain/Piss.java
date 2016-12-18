@@ -22,9 +22,8 @@ public class Piss {
     @Column(name="piss_weight")
     private String pissWeight;
 
-    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, optional = true)
-    @JoinColumn(name="user_uid")
-    private User user;
+    @Column(name="user_openid")
+    private String userOpenId;
 
 
     public int getPissId() {
@@ -51,11 +50,11 @@ public class Piss {
         pissWeight = pPissWeight;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserOpenId() {
+        return userOpenId;
     }
 
-    public void setUser(User pUser) {
-        user = pUser;
+    public void setUserOpenId(String pUserOpenId) {
+        userOpenId = pUserOpenId;
     }
 }

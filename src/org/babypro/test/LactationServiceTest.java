@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import org.babypro.domain.Lactation;
 import org.babypro.service.ILactationService;
 import org.babypro.service.IUserService;
+import org.babypro.utils.JsonTool;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by johnzhu on 10/27/2016.
@@ -33,10 +36,10 @@ public class LactationServiceTest {
 
         Lactation lactation = new Lactation();
         lactation.setLactationCurrentTime(new Date());
-        lactation.setLactationSide("Left");
-        lactation.setLactationType("1");
-        lactation.setLactationDuration(200);
-        lactation.setUser(mUserService.get("E18011112222"));
+        lactation.setLactationSide("Right");
+        lactation.setLactationType("2");
+        lactation.setLactationDuration(100);
+        lactation.setUserOpenId("test2");
 
         mLactationService.save(lactation);
 
@@ -44,9 +47,14 @@ public class LactationServiceTest {
 
     @Test
     public void get() throws Exception {
-        Lactation l = mLactationService.get(7);
-        Gson gson = new Gson();
-        String a = gson.toJson(l);
+        String hql = "from Lactation l where l.lactationId=:lactationId and l.userOpenId=:userOpenId";
+        Map<String,Object> params = new HashMap<>();
+        params.put("lactationId",2);
+        params.put("userOpenId","test");
+//        params.put("user_openid","test");
+        Lactation l = mLactationService.get(hql,params);
+
+        String a = JsonTool.objToString(l);
         System.out.println(a);
     }
 
