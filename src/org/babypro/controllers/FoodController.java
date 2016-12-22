@@ -1,12 +1,12 @@
 package org.babypro.controllers;
 
 import org.babypro.domain.Food;
-import org.babypro.domain.User;
 import org.babypro.service.IFoodService;
 import org.babypro.service.IUserService;
 import org.babypro.utils.AjaxResult;
 import org.babypro.utils.JsonTool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * 食物控制器
  * Created by apple on 2016/11/15.
  */
+@Controller
 public class FoodController {
 
     @Autowired
@@ -28,10 +29,10 @@ public class FoodController {
     @RequestMapping(value="/food/save", method = RequestMethod.POST)
     @ResponseBody
     public String save(HttpServletRequest req ,@RequestBody Food pFood){
-        User user = mUserService.get((String)req.getAttribute("user_id"));
-        pFood.setUser(user);
+        String openId = (String)req.getAttribute("open_id");
 
         try {
+            pFood.setUserOpenId(openId);
             mFoodService.save(pFood);
             aj = new AjaxResult(true, "save success");
         }catch (Exception pE){
