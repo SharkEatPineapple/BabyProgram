@@ -1,12 +1,12 @@
 package org.babypro.controllers;
 
 import org.babypro.domain.Piss;
-import org.babypro.domain.User;
 import org.babypro.service.IPissService;
 import org.babypro.service.IUserService;
 import org.babypro.utils.AjaxResult;
 import org.babypro.utils.JsonTool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * 尿尿控制器
  * Created by apple on 2016/11/15.
  */
+@Controller
 public class PissController {
 
     @Autowired
@@ -28,10 +29,11 @@ public class PissController {
     @RequestMapping(value="/piss/save", method = RequestMethod.POST)
     @ResponseBody
     public String save(HttpServletRequest req ,@RequestBody Piss pPiss){
-        User user = mUserService.get((String)req.getAttribute("user_id"));
-        pPiss.setUser(user);
+        String openId = (String)req.getAttribute("open_id");
+
 
         try {
+            pPiss.setUserOpenId(openId);
             mPissService.save(pPiss);
             aj = new AjaxResult(true, "save success");
         }catch (Exception pE){

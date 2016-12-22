@@ -53,8 +53,6 @@
         </property>
         <property name="annotatedClasses">
             <list>
-                <!-- 	<value>com.lol.common.entity.ApkVersion</value>
-                    <value>com.lol.common.entity.Area</value> -->
                 <value>org.babypro.domain.User</value>
                 <value>org.babypro.domain.Lactation</value>
                 <value>org.babypro.domain.Food</value>
